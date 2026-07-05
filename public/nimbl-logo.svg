@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="120" viewBox="0 0 420 120" role="img" aria-labelledby="title desc">
+  <title id="title">Nimbl logo</title>
+  <desc id="desc">A midnight navy logo lockup with the rounded spectrum Nimbl mark and the word Nimbl.</desc>
+  <defs>
+    <linearGradient id="nimbl-spectrum" x1="16" y1="18" x2="100" y2="102" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00d4e0" />
+      <stop offset="0.52" stop-color="#ff2d95" />
+      <stop offset="1" stop-color="#ff8a00" />
+    </linearGradient>
+    <linearGradient id="nimbl-text" x1="126" y1="30" x2="336" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="0.72" stop-color="#f2f6ff" />
+      <stop offset="1" stop-color="#ffd400" />
+    </linearGradient>
+    <filter id="nimbl-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDeviation="9" flood-color="#ff2d95" flood-opacity="0.5" />
+      <feDropShadow dx="0" dy="7" stdDeviation="13" flood-color="#1e6bff" flood-opacity="0.28" />
+    </filter>
+  </defs>
+  <rect width="420" height="120" rx="30" fill="#0a1030" />
+  <g filter="url(#nimbl-glow)">
+    <rect x="24" y="24" width="72" height="72" rx="25" fill="url(#nimbl-spectrum)" />
+  </g>
+  <text
+    x="126"
+    y="78"
+    fill="url(#nimbl-text)"
+    font-family="Sora, Inter, Arial, sans-serif"
+    font-size="54"
+    font-weight="800"
+    letter-spacing="-1.5"
+  >
+    Nimbl
+  </text>
+</svg>
