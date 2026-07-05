@@ -126,3 +126,53 @@ Kept as a record of the brief and how it evolved.
 > "add remaining prompts in prompts.md"
 > -> this file now includes the follow-up implementation prompts that came after the first landing
 > page build notes.
+
+**25. Subscription success page styling**
+> "style this page after user subscribes to match the theme, color balance and font as the landing page:
+> Subscription started
+>
+> Your automation plan is live.
+> Stripe confirmed your subscription. Nymbl is ready to turn your monthly automation bundle into finished marketing work.
+>
+> Try the script demo
+> Manage subscription Add that there is no money transfered in this transaction, this is a Stripe demo subscription test feature"
+> -> the success page now uses the Nymbl logo mark, spectrum color treatment, landing-page fonts,
+> and a clear Stripe test-mode notice.
+
+**26. Favicon**
+> "add a favicon, make sure it matches the logo next to Nymbl at the top left of the landing page"
+> -> added `app/icon.svg` with the same midnight base and spectrum rounded-square logo mark,
+> then wired it through Next metadata.
+
+**27. Stripe test notice line break**
+> "add a break after transaction: No money is transferred in this transaction. This is a Stripe demo subscription test feature."
+> -> the success-page notice now breaks after "transaction." so the Stripe demo sentence starts
+> on its own line.
+
+**28. Hero trust-line font size**
+> "increase the font by 3px on the top of the landing page: Loved by realtors, roofers, studios, skydivers, and makers."
+> -> increased the hero trust-line font size by exactly 3px.
+
+**29. Hero subheadline line break**
+> "add a break after automatically.: Nymbl builds your videos, posts them everywhere, captures your leads, and handles the busywork across 9,000+ apps—automatically. You run your business. We run the rest."
+> -> added a line break after "automatically." so "You run your business. We run the rest." starts
+> on a new line.
+
+**30. More testimonial cards**
+> "add two more testimonial cards, from a massage therapist and a clothing boutique store: From busy owners
+>
+> They stopped posting.
+> Nymbl didn't."
+> -> added massage therapist and clothing boutique owner testimonials with matching avatar styling.
+
+**31. Footer phone CTA**
+> "add a don't want to book you want to talk to us right away, call us at 222-222-2222 here:
+> Nymbl
+> Automated marketing for busy businesses.
+>
+> Demo landing page · payments in test mode"
+> -> added a footer call prompt with a clickable `tel:2222222222` link and Nymbl-themed styling.
+
+**32. Prompt log completion**
+> "add all remaining prompts to prompts.md"
+> -> this file now includes the prompts added after the previous prompt-log update.
