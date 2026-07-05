@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="nymbl-spectrum" x1="6" y1="8" x2="58" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00d4e0" />
+      <stop offset="0.52" stop-color="#ff2d95" />
+      <stop offset="1" stop-color="#ff8a00" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="22" fill="#0a1030" />
+  <rect x="10" y="10" width="44" height="44" rx="16" fill="url(#nymbl-spectrum)" />
+</svg>
