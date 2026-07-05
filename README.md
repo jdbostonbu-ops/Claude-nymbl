@@ -7,7 +7,7 @@
 Automated-marketing landing page. **Next.js (App Router) + TypeScript + CSS**, deployed on **Vercel**.
 
 The page sells automation broadly, showcases AI social video with a live demo (powered by
-OpenAI, server-side), books calls through Cal.com, and offers three Stripe **Test Mode**
+OpenAI, server-side, Zapier, and HeyGen) linked to Instagram Social Media account, books calls through Cal.com, and offers three Stripe **Test Mode**
 subscription tiers.
 
 <p align="center">
