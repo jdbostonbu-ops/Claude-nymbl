@@ -176,3 +176,37 @@ Kept as a record of the brief and how it evolved.
 **32. Prompt log completion**
 > "add all remaining prompts to prompts.md"
 > -> this file now includes the prompts added after the previous prompt-log update.
+
+**33. Lead-capture data separation**
+> "Critical data separation: The contact fields (name, email, phone) are lead-capture data ONLY.
+> They must never be included in the request to /api/generate-script and must never reach OpenAI —
+> otherwise the AI could read them into the video script. Keep the OpenAI call receiving only the
+> creative-brief fields (promoting, vibe, presenter, sellingPoint), exactly as it does now."
+> -> the demo keeps `/api/generate-script` brief-only and sends contact data only through the
+> separate video-order webhook route.
+
+**34. One-video order form**
+> "The contact fields are sent only in the \"Generate my video\" webhook POST. That webhook body
+> includes everything — both buckets — because Zapier needs the contact info for the lead log AND
+> the script for HeyGen: { name, email, phone, business, promoting, vibe, presenter, sellingPoint,
+> script, date }."
+> "I need to add name, email, phone and business to the form in the section: See it build you a
+> video and change see it build you a video Need one video instead of 5. Order here!"
+> -> added lead fields to the demo/order form, changed the section/CTA copy, and added a
+> `/api/generate-video` route that forwards the full Zapier payload.
+
+**35. Longer creative brief fields**
+> "The what are you promoting field and key selling point doesn't allow me to enter all of my
+> information. It's limited in characters"
+> -> changed those two fields to multi-line textareas and raised their character limit to 1,000
+> characters, with matching server-side sanitizer limits.
+
+**36. Zapier webhook environment name**
+> "on the generate video button, I am using this webhook not the video webhook:
+> NEXT_PUBLIC_ZAPIER_WEBHOOK_URL"
+> -> updated the video-order route and README to use `NEXT_PUBLIC_ZAPIER_WEBHOOK_URL` for the
+> Zapier Catch Hook.
+
+**37. Prompt log completion**
+> "add all remaining prompts in prompts.md"
+> -> this file now includes the latest form, webhook, and data-separation prompts.
