@@ -53,12 +53,52 @@ subscription tiers.
 
 ---
 
-## Quick start
+## The Zapier automation pipeline
 
-```bash
-npm install
-cp .env.example .env      # then fill in your values
-npm run dev               # http://localhost:3000
+The showcase automation on this page turns a visitor's form submission into a rendered AI video
+**and** a captured lead — hands-free. It is a 3-step Zap wired to the landing page's demo form.
+
+### Data flow
+
+```
+Landing page demo form
+  │   name, email, phone, business,
+  │   promoting, vibe, presenter, sellingPoint, script, date
+  ▼
+[ Generate my video ]  ──POST──►  Zapier "Catch Hook" webhook (trigger)
+                                        │
+                        ┌───────────────┴───────────────┐
+                        ▼                               ▼
+             HeyGen: Create a Video           Google Sheets: Create Row
+             From Video Agent                 ("Nymbl Video Requests")
+             → renders the video              → logs the lead
+                        │                               │
+                        ▼                               ▼
+                  video generated                 lead captured
+                  (NOT delivered)                 (your worklist / CRM)
+```
+
+### The three Zap steps
+
+1. **Trigger — Webhooks by Zapier › Catch Hook.**
+   Generates a unique webhook URL. The landing page's **"Generate my video"** button POSTs the
+   full payload to it. (URL lives in `NEXT_PUBLIC_ZAPIER_WEBHOOK_URL`.)
+
+2. **Action — HeyGen › Create a Video From Video Agent.**
+   The webhook's **`script`** field maps into HeyGen's **Prompt**; `vibe` / `presenter` inform the
+   style; duration set to 60s, one-shot session. HeyGen renders the video.
+
+3. **Action — Google Sheets › Create Spreadsheet Row.**
+   Writes the lead to the **Nymbl Video Requests** sheet with columns:
+   `Date | Name | Email | Phone | Business | Promoting | Vibe | Presenter | Script`.
+
+### Critical data separation
+
+Contact fields (**name, email, phone**) are lead-capture data only. They are **never** sent to
+OpenAI and **never** placed in the video script — otherwise the avatar could read them aloud. The
+`/api/generate-script` route receives only the creative brief (`promoting`, `vibe`, `presenter`,
+`sellingPoint`). The full payload (contact info **and** script) goes to the Zapier webhook, where
+HeyGen consumes only the script and Google Sheets stores the contact fields.
 ```
 
 ## Environment variables
@@ -69,6 +109,7 @@ Set these in `.env` (local) and in the Vercel dashboard (production). `.env` is 
 | --- | --- | --- |
 | `OPENAI_API_KEY` | Powers the "Write my script" demo. | No — server only |
 | `OPENAI_MODEL` | Optional model override (default `gpt-4o-mini`). | No |
+| `NEXT_PUBLIC_ZAPIER_WEBHOOK_URL` | Zapier Catch Hook URL for "Generate my video" orders. | Yes |
 | `NEXT_PUBLIC_CAL_LINK` | Your Cal.com 15-min booking link. | Yes |
 | `STRIPE_SECRET_KEY` | Stripe secret key for Checkout and Customer Portal. | No |
 | `STRIPE_PRICE_KICKSTART` | Stripe recurring monthly Price ID for Kickstart ($50). | No |
@@ -86,6 +127,13 @@ and Stripe secret key are **not** public — they are read only inside server-si
 `/api/generate-script`. That route holds `OPENAI_API_KEY`, calls OpenAI, and returns a short
 script. The browser never sees the key. Input is capped at 200 chars per field as a basic
 abuse guard, and the demo only *generates* a script — it never posts or delivers anything.
+Lead-capture fields (`name`, `email`, `phone`, `business`) are deliberately excluded from this
+request so they never reach OpenAI.
+
+**Generate my video (Zapier).** The order button POSTs to `/api/generate-video`, which forwards
+the full Zapier payload to `NEXT_PUBLIC_ZAPIER_WEBHOOK_URL`:
+`{ name, email, phone, business, promoting, vibe, presenter, sellingPoint, script, date }`.
+Zapier receives both the lead fields and generated script for the lead log and HeyGen workflow.
 
 **Book a 15-min call (Cal.com).** Every "Book a 15-min call" button links to
 `NEXT_PUBLIC_CAL_LINK`. Set it to your Cal.com URL (e.g. `https://cal.com/you/15min`). To use
@@ -131,6 +179,7 @@ layout.tsx                 fonts (Sora + Inter) + metadata
 page.tsx                   assembles every section
 globals.css                all styling (design tokens in :root)
 api/generate-script/route.ts   server-side OpenAI call
+api/generate-video/route.ts    server-side Zapier video order webhook
 api/checkout/route.ts          server-side Stripe Checkout Session
 api/customer-portal/route.ts   server-side Stripe Customer Portal
 components/

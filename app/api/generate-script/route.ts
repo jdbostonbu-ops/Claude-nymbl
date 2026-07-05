@@ -8,7 +8,7 @@ import type { ErrorResponse, ScriptRequest, ScriptResponse } from "@/lib/types";
 export const runtime = "nodejs";
 
 // --- small guards to keep a public demo from being abused ---
-const MAX_FIELD_LENGTH = 200;
+const MAX_FIELD_LENGTH = 1000;
 
 const clean = (value: unknown): string => {
   if (typeof value !== "string") {

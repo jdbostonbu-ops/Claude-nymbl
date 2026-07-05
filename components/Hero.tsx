@@ -33,7 +33,7 @@ const Hero = () => {
               Book a 15-min call
             </a>
             <a href="#demo" className="btn btn-ghost">
-              See it build you a video
+              Need one video instead of 5. Order here!
             </a>
           </div>
         </Reveal>

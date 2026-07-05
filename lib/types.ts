@@ -11,6 +11,22 @@ export interface ScriptResponse {
   script: string;
 }
 
+export interface VideoRequest extends ScriptRequest {
+  name: string;
+  email: string;
+  phone: string;
+  business: string;
+  script: string;
+}
+
+export interface VideoWebhookPayload extends VideoRequest {
+  date: string;
+}
+
+export interface VideoResponse {
+  ok: true;
+}
+
 export interface ErrorResponse {
   error: string;
 }
