@@ -210,3 +210,12 @@ Kept as a record of the brief and how it evolved.
 **37. Prompt log completion**
 > "add all remaining prompts in prompts.md"
 > -> this file now includes the latest form, webhook, and data-separation prompts.
+
+**38. Instagram Reel replacement**
+> "replace the instagram video with this video: https://www.instagram.com/reel/DabErYEx3rt/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+> -> updated the Instagram showcase embed/link from the original post URL to
+> `https://www.instagram.com/reel/DabErYEx3rt/`.
+
+**39. Prompt log completion**
+> "add remaining prompts to prompts.md"
+> -> this file now includes the latest Instagram Reel replacement prompt.

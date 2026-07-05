@@ -1,7 +1,7 @@
 import Script from "next/script";
 import Reveal from "@/components/Reveal";
 
-const instagramUrl = "https://www.instagram.com/p/DaYfRkalc7d/";
+const instagramUrl = "https://www.instagram.com/reel/DabErYEx3rt/";
 
 const InstagramIcon = () => (
   <svg className="social-icon" viewBox="0 0 24 24" aria-hidden="true">
