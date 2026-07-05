@@ -99,7 +99,7 @@ OpenAI and **never** placed in the video script — otherwise the avatar could r
 `/api/generate-script` route receives only the creative brief (`promoting`, `vibe`, `presenter`,
 `sellingPoint`). The full payload (contact info **and** script) goes to the Zapier webhook, where
 HeyGen consumes only the script and Google Sheets stores the contact fields.
-```
+
 
 ## Environment variables
 
